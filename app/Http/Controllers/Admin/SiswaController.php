@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Guru;
+use App\Models\Admin\Pembimbing;
 use App\Models\Admin\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -117,6 +119,13 @@ class SiswaController extends Controller
 
     public function siswaGuru($id)
     {
+        $loginGuru = Auth::guard('guru')->user()->id_guru;
+        $pembimbing = Pembimbing::find($id);
+
+        if (!$pembimbing || $pembimbing->id_guru !== $loginGuru) {
+            return back()->withErrors(['access' => 'akses anda di tolak.']);
+        }
+
         $siswas = Siswa::where('id_pembimbing', $id)->get();
         $siswa = siswa::where('id_pembimbing', $id)->first();
         return view('guru.siswa', compact('siswas', 'siswa', 'id'));
