@@ -23,7 +23,7 @@
                 @method('PUT')
                 <div class="mb-3">
                     <label for="nip" class="form-label">Nip</label>
-                    <input type="text" class="form-control" id="nip" name="nip" value="{{ old('nip', $profile->nip) }}">
+                    <input type="text" class="form-control" id="nip" name="nip" value="{{ old('nip', $profile->nip ?? 'belum punya nip') }}" readonly>
                     <div class="text-danger">
                         @error('nip')
                         {{ $message }}

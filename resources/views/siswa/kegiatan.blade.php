@@ -1,4 +1,4 @@
-@extends('guru.layouts.app')
+@extends('siswa.layouts.app')
 
 @section('title','Kegiatan')
 
@@ -8,20 +8,6 @@
          {{ $errors->first('access') }}
     </div>
 @endif
-@if($kegiatan)
-<div class="row bg-light rounded align-items-center mx-0">
-    <div class="col-md-6 p-3">
-        <table>
-            <tr>
-                <td width="100">Nama Siswa</td>
-                <td width="15">:</td>
-                <td>{{ $kegiatan->kegiatanSiswa->nama_siswa }}</td>
-            </tr>
-        </table>
-    </div>
-</div>
-<br>
-@endif
 
 <div class="row g-4"><div class="col-12">
                         <div class="bg-light rounded h-100 p-4">
@@ -30,8 +16,9 @@
                                 {{ session('success') }}
                             </div>
                             @endif
-                            <h6 class="mb-4">Data Pembimbing</h6>
+                            <h6 class="mb-4">Data Kegiatan</h6>
                             <div class="table-responsive">
+                                <a href="" class="btn btn_primary btm.sm">Tambah</a>
                                 <table class="table" id="kegiatan">
                                     <thead>
                                         <tr>
@@ -51,7 +38,8 @@
                                         
                                             <td>
                             
-                                                <a href="{{ route('guru.pembimbing.siswa.kegiatan.detail', ['id' => $id_pembimbing, 'id_siswa' => $kegiatan->id_siswa, 'id_kegiatan' => $kegiatan->id_kegiatan]) }}" class="btn btn-info btn-sm">Detail</a>
+                                                <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="" class="btn btn-danger btn-sm">Hapus</a>
 
                                             </td>
                                         </tr>
