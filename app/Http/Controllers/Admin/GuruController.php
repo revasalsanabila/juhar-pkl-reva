@@ -38,7 +38,7 @@ class GuruController extends Controller
             'email' => 'required|email|unique:guru,email',
             'password' => 'required|min:6',
             'nama_guru' => 'required',
-            'foto' => 'nullable|image|mimes:jpng,jpj,png,gif|max:2048',
+            'foto' => 'nullable|image|mimes:jpng,jpg,png,gif|max:2048',
         ]);
 
         $foto = null;
@@ -76,6 +76,10 @@ class GuruController extends Controller
     public function edit(string $id)
     {
         $guru = Guru::find($id);
+
+        if (!$guru) {
+            return back();
+        }
         return view('admin.edit_guru', compact('guru'));
     }
 

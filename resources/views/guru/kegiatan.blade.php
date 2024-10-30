@@ -32,10 +32,33 @@
                             @endif
                             <h6 class="mb-4">Data Pembimbing</h6>
                             <div class="table-responsive">
+                                <form action="{{ route('guru.pembimbing.siswa.kegiatan.cari', ['id' => $id_pembimbing, 'id_siswa' =>$id_siswa]) }}" method="GET" class="row g-3">
+                                    <div class="col-auto">
+                                        <label for="tanggal_awal" class="form-label"> Tanggal Awal</label>
+                                        <input type="date" class="form-control" name="tanggal_awal" id="tanggal_awal" value="{{ $tanggalAwal ?? '' }}">
+                                        <div class="text-danger">
+                                            @error('tanggal_awal')
+                                            {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label for="tanggal_akhir" class="form-label"> Tanggal Akhir</label>
+                                        <input type="date" class="form-control" name="tanggal_akhir" id="tanggal_akhir" value="{{ $tanggalakhir ?? '' }}">
+                                        <div class="text-danger">
+                                            @error('tanggal_akhir')
+                                            {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-auto align-self-end">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                        <a href="{{ route('guru.pembimbing.siswa.kegiatan', ['id' => $id_pembimbing, 'id_siswa' => $id_siswa]) }}" class="btn btn-primary"><i class="fas fa-sync-alt"></i></a>
+                                    </div>
+                                </form>
                                 <table class="table" id="kegiatan">
                                     <thead>
                                         <tr>
-                                        
                                             <th scope="col">No</th>
                                             <th scope="col">Tanggal Kegiatan</th>
                                             <th scope="col">Nama Kegiatan</th>
